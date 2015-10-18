@@ -11,7 +11,9 @@ export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false};
-    console.dir(this.state)
+    this.handleClick = this.handleClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
+
   }
 
   handleClick() {
@@ -30,14 +32,14 @@ export default class Dropdown extends React.Component {
     var list = this.props.items.map(function(item){
       return <ListItem
               item={item}
-              whenItemClicked={this.handleItemClick.bind(this)}
+              whenItemClicked={this.handleItemClick}
               className={this.state.itemTitle === item ? "active" : "" }
               />
     }.bind(this));
 
     return <div className="dropdown">
       <Button
-        whenClicked={this.handleClick.bind(this)}
+        whenClicked={this.handleClick}
         className="btn-default"
         subTitleClassName="caret"
         title={this.state.itemTitle || this.props.title}
